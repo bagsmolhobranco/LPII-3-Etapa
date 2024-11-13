@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de Personagem de TTRPG</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main id="form">
+        <h1>Crie seu Personagem</h1>
+
+        <form action="#" method="get" onsubmit="event.preventDefault(); rpg(); return false;">
+            <p>
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" id="nome" required>
+            </p>
+            <p>
+                <label for="classe">Classe</label>
+                <select name="classe" id="classe">
+                    <option value="Lutador">Lutador</option>
+                    <option value="Ladino">Ladino</option>
+                    <option value="Arcanista">Arcanista</option>
+                    <option value="Engenheiro">Engenheiro</option>
+                    <option value="Bardo">Bardo</option>
+                </select>
+            </p>
+            <p>
+                <label for="raca">Raça</label>
+                <select name="raca" id="raca">
+                    <option value="Humano">Humano</option>
+                    <option value="Elfo">Elfo</option>
+                    <option value="Anão">Anão</option>
+                    <option value="Draconato">Draconato</option>
+                    <option value="Kobold">Kobold(s)</option>
+                </select>
+            </p>
+            <p>
+                <label for="xp">Pontos de Experiencia</label>
+                <input type="number" name="xp" id="xp" min="0">
+            </p>
+            <p><strong>Cada 500 de Experiencia equivalem a 1 Nível. Todos começam no Nível 1.</strong></p>
+
+            <input type="submit" value="Concluir">
+        </form>
+        <section>
+            <h2 id="nom"></h2>
+            <h2 id="race"></h2>
+            <h2 id="tipo"></h2>
+            <h2 id="total"></h2>
+        </section>
+        <img src="" alt="" id="foto">
+    </main>
+
+    <script>
+        function rpg(){
+            nome = document.getElementById('nome').value;
+            classe = document.getElementById('classe').value;
+            raça = document.getElementById('raca').value;
+            xp = document.getElementById('xp').value;
+            nivel = (xp / 500 + 1);
+
+            if(nivel < 1) {
+                nivel = 1;
+            } if(nivel > 20) {
+                nivel = 20;
+            }
+
+            if(classe == "Lutador") {
+                newFoto = "img/lutador.png"
+                height = "550px"
+                bottom = ""
+            }
+            if(classe == "Ladino") {
+                newFoto = "img/ladino.png"
+                bottom = "-50px"
+            }
+            if(classe == "Arcanista") {
+                newFoto = "img/arcanista.png"
+                height = "550px"
+                bottom = ""
+            }
+            if(classe == "Engenheiro") {
+                newFoto = "img/engenheiro.png"
+                height = "550px"
+                bottom = ""
+
+            }
+            if(classe == "Bardo") {
+                newFoto = "img/bardo.png"
+                height = "550px"
+                bottom = ""
+            }
+
+            nom.innerHTML = nome;
+            race.innerHTML = raça;
+            tipo.innerHTML = classe;
+            total.innerHTML = nivel;
+
+
+            document.getElementById('foto').src = newFoto
+            document.getElementById('foto').style.height = height
+            document.getElementById('foto').style.bottom = bottom
+        }
+
+    </script>
+</body>
+</html>
